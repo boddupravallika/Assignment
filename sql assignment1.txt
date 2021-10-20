@@ -1,0 +1,169 @@
+1.Write a query to list all the employees who are working as clerk
+  select ename,job 
+  from emp 
+  where job='clerk';
+
+2.Write a query to list the employees who are working as clerks or managers
+  select ename,job
+  from emp
+  where job='clerk' or job= 'mgr';
+
+3.Write a query to get the current date
+  select getdate();
+
+4.Write a query to list the employees whose salaries are within the range of 500 and 1000
+  select ename,sal
+  from emp 
+  where sal  between 500 and 1000;
+
+5.Write a query to list the employees who have joined in the month of December
+  select ename,hiredate
+  from emp
+  where month(hiredate)=12;
+
+6.Write a query to list the employees whose salaries are not within  the range of 1000 and 2500
+  select ename,sal
+  from emp 
+  where sal not between 1000 and 2500; 
+
+7.Write a query who are getting 800, 950, 3000,5000
+  select ename,sal
+  from emp 
+  where sal in (800,950,3000,5000);
+
+8.To list all the employees whose names are having ‘L’ as second character 
+  select ename
+  from emp
+  where ename like '_l%';
+
+9.To list all the employees whose names are having ‘D’ as last character 
+  select ename 
+  from emp 
+  where ename like '%d';
+
+10.To list all the employees whose names are having just 5 characters as length? 
+   select ename 
+   from emp 
+   where length(ename)=5;
+
+11.To list all the employees whose names are starting with ‘T’ and ending with ‘R’ 
+   select ename
+   from emp 
+   where ename like 't%r';
+
+12.Display those employees who's name contains "A"?
+   select ename
+   from emp 
+   where ename like '%a%';
+
+13.Display those employee who joined the company before 19th of the month?
+   select ename,hiredate
+   from emp
+   where day(hiredate)<19
+
+14.What is the employee number of 'James' 
+   select empno
+   from emp
+   where ename='james';
+ 
+15.What is the salary of 'king'?
+   select ename,sal 
+   from emp 
+   where ename='king';
+
+16.Who is the President for organization?
+   select ename,job
+   from emp 
+   where job = 'president';
+
+17.List all details of all the managers?
+   select ename,job,empno,sal,hiredate,comm,deptno
+   from emp
+   where job='manager';
+
+18.Give employee details for employees drawing commission?
+   select ename,job,empno,sal,hiredate,comm,deptno
+   from emp
+   where comm is not null;
+
+19.List employees who joined before april-1981?
+   select job, count(job)
+   from emp
+   where hiredate<'1981-04-01'
+   group by job;
+
+20.What is the salary of following: 
+21.King, Blake, Ford, Smith
+   select ename,sal
+   from emp
+   where ename='king' or ename='blake' or ename='smith' or ename='ford';
+
+22.Who is drawing salary less than 3500
+   select ename,sal 
+   from emp
+   where sal<3500;
+   
+23.List the details of all the clerks
+   select ename,job,empno,sal,hiredate,comm,deptno
+   from emp
+   where job='clerk';
+
+24.what is the annual salary for each the employees
+   select ename,sal*12 as 'annual sal'
+   from emp;
+
+25.if there is a hike in monthly salary by 20% for ford, what will be his annual Salary
+   select ((sal*20)/100+sal)*12 as 'total sal'
+   from emp;
+   
+26.What is the total salary for each department
+   select deptno, sum(sal) as 'total sal'
+   from emp
+   group by deptno;
+
+27.Who is drawing the lowest salary in dept 10
+   select ename,deptno,sal
+   from emp
+   where deptno=10
+   order by sal;
+
+28.What is the average salary for Managers
+   select job,sal*12 as 'avgsal'
+   from emp
+   where job='manager'
+
+29.What is the total salary for salesman
+   select job, sum(sal) as 'total sal'
+   from emp
+   where job='salesman'
+   group by job;
+
+30.Which department is having the lowest average salary?
+   select job,sal*12 as 'avgsal'
+   from emp
+   group by sal,job
+   order by sal;
+
+31.How many persons are in each role
+   select job, count(job)
+   from emp
+   group by job;
+
+32.What is the highest salary among analyst
+   select job, max(sal) as 'highsal'
+   from emp
+   where job='analyst'
+   group by job;
+
+33.What is the highest commission paid
+   select max(comm) as 'highcom'
+   from emp;
+
+34.How many departments are there
+   select count(dname) as 'depts'
+   from dept;
+
+35.List the names in which 3rd  character is L
+   select ename
+   from emp
+   where ename like ' ___l%';
